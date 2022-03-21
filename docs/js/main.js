@@ -53,9 +53,23 @@ function renderComments(arr, parent) {
     likeButton.textContent = `${
       element.likes > 0 ? `${element.likes} likes` : "like"
     }`;
-    replyButton.addEventListener("click", (e) => {});
 
-    likeButton.addEventListener("click", (e) => {});
+    replyButton.addEventListener("click", (e) => {
+      const newInput = inputContainer.cloneNode(true);
+      newInput.value = "";
+      newInput.focus();
+      newInput.addEventListener("keydown", (e) => {
+        handbleEnter(e, element);
+      });
+      commentContainer.insertBefore(newInput, responsesContainer);
+    });
+
+    likeButton.addEventListener("click", (e) => {
+      element.likes++;
+      likeButton.textContent = `${
+        element.likes > 0 ? `${element.likes} likes` : "like"
+      }`;
+    });
 
     //append
     commentContainer.appendChild(textContainer);
