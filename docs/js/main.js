@@ -84,4 +84,5 @@ function renderComments(arr, parent) {
     }
     parent.appendChild(commentContainer);
   });
+  console.log(comments);
 }
